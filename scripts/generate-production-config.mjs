@@ -142,7 +142,10 @@ function writeProductionFile(ids) {
   if (ids.account) {
     content = content.replaceAll("__CLOUDFLARE_ACCOUNT_ID__", ids.account);
   } else {
-    content = content.replace(/^\s*"account_id": "__CLOUDFLARE_ACCOUNT_ID__",\n/m, "");
+    content = content.replace(
+      /^[ \t]*"account_id": "__CLOUDFLARE_ACCOUNT_ID__",\r?\n/m,
+      "",
+    );
   }
 
   fs.writeFileSync(productionPath, content);
